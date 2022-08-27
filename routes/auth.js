@@ -5,8 +5,8 @@ import { checkUser } from '../middlewares/auth'
 const router = express.Router()
 
 router.post('/auth', authUser)
-router.get('/auth', checkUser, (req, res) => {
-  res.send('authOk')
+router.get('/test', checkUser, (req, res) => {
+  res.send(req.body.userId)
 })
 
 module.exports = router

@@ -39,8 +39,7 @@ const sendUserLoginSuccessResponse = (res, user, fn) => {
   }, null)
 
   const decoded = jwt.verify(token, process.env.JWT_SECRET, null, null)
-
-  console.log("CAME ");
+  
 
   if (user._id.toString() === decoded._id) {
     return res.status(200).json({
