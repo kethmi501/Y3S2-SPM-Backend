@@ -1,6 +1,12 @@
 import jwt from 'jsonwebtoken'
 
 export const checkUser = (req, res, next) => {
+  if (req.body.userId) {
+    return res.status(401).json({
+      message: 'I can see you.',
+    })
+  }
+
   const tokenString = req.headers.authorization
 
   if (!tokenString) {
@@ -9,7 +15,7 @@ export const checkUser = (req, res, next) => {
     })
   }
 
-  const token = tokenString.split(" ")[1]
+  const token = tokenString.split(' ')[1]
 
   if (!token) {
     return res.status(401).json({
