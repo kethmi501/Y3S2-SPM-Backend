@@ -70,7 +70,7 @@ export const addAnimal = async (req, res) => {
 
 }
 
-export const getAnimalList = async (req, res) => {
+export const getAnimalsList = async (req, res) => {
   await Animal.find().then((animals) => {
     
     return res.status(200).json({
