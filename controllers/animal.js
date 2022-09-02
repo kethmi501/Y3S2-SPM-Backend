@@ -69,3 +69,12 @@ export const addAnimal = async (req, res) => {
   })
 
 }
+
+export const getAnimalList = async (req, res) => {
+  await Animal.find().then((animals) => {
+    
+    return res.status(200).json({
+      message: 'Animals List Fetched Successfully',
+      animalsList: animals
+    })
+})}
