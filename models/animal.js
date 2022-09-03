@@ -35,6 +35,8 @@ const animalSchema = new Schema({
     type: String, required: true,
   }, publisherId: {
     type: String, required: true,
+  }, imageArray: {
+    type: JSON, required: true,
   },
 }, {
   timestamps: true,
