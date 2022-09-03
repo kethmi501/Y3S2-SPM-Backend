@@ -18,6 +18,7 @@ export const addAnimal = async (req, res) => {
     familyOfAnimal,
     genusOfAnimal,
     speciesOfAnimal,
+    imageArray,
     userId,
   } = req.body
 
@@ -55,6 +56,7 @@ export const addAnimal = async (req, res) => {
     familyOfAnimal,
     genusOfAnimal,
     speciesOfAnimal,
+    imageArray,
     publisherId: _id,
   }).then((createdAnimal) => {
     return res.status(200).json({
@@ -126,6 +128,7 @@ export const editSingleAnimal = async (req, res) => {
     familyOfAnimal,
     genusOfAnimal,
     speciesOfAnimal,
+    imageArray,
     userId,
   } = req.body
 
@@ -165,6 +168,7 @@ export const editSingleAnimal = async (req, res) => {
       familyOfAnimal,
       genusOfAnimal,
       speciesOfAnimal,
+      imageArray,
     }).then((createdAnimal) => {
     return res.status(200).json({
       message: 'Animal updated successfully',
