@@ -37,7 +37,9 @@ const animalSchema = new Schema({
     type: String, required: true,
   }, imageArray: {
     type: JSON, required: true,
-  },
+  },enhancementCardIds : {
+    type: [String], required: true,
+  }
 }, {
   timestamps: true,
 })

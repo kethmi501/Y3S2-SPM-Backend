@@ -58,6 +58,7 @@ export const addAnimal = async (req, res) => {
     speciesOfAnimal,
     imageArray,
     publisherId: _id,
+    enhancementCardIds: [],
   }).then((createdAnimal) => {
     return res.status(200).json({
       message: 'Animal created successfully',
