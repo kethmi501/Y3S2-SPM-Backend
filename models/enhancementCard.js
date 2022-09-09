@@ -28,6 +28,10 @@ const enhancementCardSchema = new Schema(
       type: String,
       required: true,
     },
+    reports: {
+      type: [String],
+      required: false,
+    }
   },
   {
     timestamps: true,
