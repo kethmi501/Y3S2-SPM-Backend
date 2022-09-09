@@ -2,25 +2,9 @@ import mongoose from 'mongoose'
 
 const { Schema } = mongoose
 
-const treeSchema = new Schema(
+const enhancementCardSchema = new Schema(
   {
-    createdUser: {
-      type: String,
-      required: true,
-    },
-    name: {
-      type: String,
-      required: true,
-    },
-    image: {
-      type: JSON,
-      required: true,
-    },
-    tags: {
-      type: [String],
-      required: true,
-    },
-    scientificname: {
+    topic: {
       type: String,
       required: true,
     },
@@ -28,15 +12,30 @@ const treeSchema = new Schema(
       type: String,
       required: true,
     },
-    enhancementCardIds : {
-      type: [String],
+    userId: {
+      type: String,
       required: true,
-      default: [],
+    },
+    imageArray: {
+      type: JSON,
+      required: true,
+    },
+    entityType: {
+      type: String,
+      required: true,
+    },
+    entityID: {
+      type: String,
+      required: true,
+    },
+    reports: {
+      type: [String],
+      required: false,
     }
   },
   {
     timestamps: true,
-  }
+  },
 )
 
-export default mongoose.model('Tree', treeSchema)
+export default mongoose.model('EnhancementCard', enhancementCardSchema)
