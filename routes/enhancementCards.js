@@ -7,7 +7,7 @@ const router = express.Router()
 router.post('/enhancementCards/addCard', checkUser, addEnhancementCards)
 router.get('/enhancementCards/viewCard', viewEnhancementCards)
 router.delete('/enhancementCards/reportCard', checkUser, reportEnhancementCards)
-router.delete('/enhancementCards/editCard', checkUser, editEnhancementCards)
+router.put('/enhancementCards/editCard', checkUser, editEnhancementCards)
 
 
 module.exports = router

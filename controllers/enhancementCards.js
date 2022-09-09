@@ -227,22 +227,30 @@ export const editEnhancementCards = async (req, res) => {
     })
   }
 
-  await EnhancementCard.findByIdAndUpdate(
-    enhancementCardId,
-    {
-      topic, description, imageArray,
-    },
-    { new: true },
-    (err, enhancementCard) => {
-      if (err) {
-        return res.status(400).json({
-          message: 'Error editing enhancement card',
+
+  await EnhancementCard.findById(enhancementCardId)
+    .then(async (enhancementCard) => {
+
+      await EnhancementCard.findByIdAndUpdate(
+        enhancementCard._id,
+        {
+          topic, description, imageArray,
+        },
+        { new: true })
+        .then((enhancementCard) => {
+          return res.status(200).json({
+            message: 'Enhancement Card edited successfully', enhancementCard: enhancementCard,
+          })
+        }).catch((err) => {
+          return res.status(500).json({
+            message: 'Error editing Enhancement Card', err,
+          })
         })
-      }
-      return res.status(200).json({
-        message: 'Enhancement Card edited successfully', enhancementCard: enhancementCard,
+    })
+    .catch((err) => {
+      return res.status(500).json({
+        message: 'Error editing Enhancement Card', err,
       })
     })
-
 
 }
