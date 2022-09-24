@@ -46,7 +46,7 @@ export const likePost = async (req, res) => {
     .then((res) => {
       likesArr = res.likes
       const index = likesArr.findIndex((object) => object === userId)
-      if (index === 1) {
+      if (index !== -1) {
         const idx = likesArr.indexOf(userId)
         if (idx > -1) {
           // only splice array when item is found
