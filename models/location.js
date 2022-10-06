@@ -16,6 +16,10 @@ const locationSchema = new Schema(
       type: JSON,
       required: true,
     },
+    address : {
+      type : String,
+      required : true,
+    },
     publisherId: {
       type: String,
       required: true,
