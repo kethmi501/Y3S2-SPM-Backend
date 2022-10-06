@@ -1,11 +1,12 @@
 import Location from '../models/location'
 
 export const createLocation = async (req, res) => {
-  const { userId, district, image, location } = req.body
+  const { userId, district, image, location, address } = req.body
   await Location.create({
     publisherId: userId,
     images: image,
     district: district,
+    address: address,
     location: location,
     likes: [],
   })
@@ -93,5 +94,37 @@ export const retrieveOneUpdate = async (req, res) => {
     })
     .catch((err) => {
       res.status(500).json(err)
+    })
+}
+
+export const searchLocation = async (req, res) => {
+  const { keyword } = req.body
+  let locations = []
+  let found = []
+  await Location.find()
+    .then((result) => {
+      result.forEach((element) => {
+        locations.push({
+          id: element._id,
+          keywords:
+            element.district.toLowerCase() + element.address.toLowerCase(),
+        })
+      })
+      locations.forEach((element) => {
+        if (element.keywords.includes(keyword.toLowerCase())) {
+          found.push(element.id)
+        }
+      })
+    })
+    .catch((err) => {
+      res.status(500).json(err)
+    })
+
+  await Location.find({ _id: { $in: found } })
+    .then((result) => {
+      return res.status(200).json(result)
+    })
+    .catch((err) => {
+      return res.status(500).json(err)
     })
 }
