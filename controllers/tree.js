@@ -39,7 +39,6 @@ export const retriveUserPosts = async (req, res) => {
 
 export const deletePost = async (req, res) => {
   const { userId, postId } = req.body
-  console.log(req.body)
   await Tree.deleteOne({ createdUser: userId, _id: postId })
     .then((result) => {
       res.status(200).json(result)
@@ -75,6 +74,44 @@ export const updatePost = async (req, res) => {
     new: true,
     upsert: true, // Make this update into an upsert
   })
+    .then((result) => {
+      return res.status(200).json(result)
+    })
+    .catch((err) => {
+      return res.status(500).json(err)
+    })
+}
+
+export const searchTrees = async (req, res) => {
+  const { keyword } = req.body
+  let trees = []
+  let found = []
+  let posts = []
+  await Tree.find()
+    .then((result) => {
+      result.forEach((element) => {
+        let tags
+        element.tags.forEach((element) => {
+          tags = tags + element
+        })
+        trees.push({
+          id: element._id,
+          keywords:
+            element.name.toLowerCase() +
+            element.scientificname.toLowerCase() +
+            tags.toLowerCase(),
+        })
+      })
+      trees.forEach((element) => {
+        if (element.keywords.includes(keyword.toLowerCase())) {
+          found.push(element.id)
+        }
+      })
+    })
+    .catch((err) => {
+      res.status(500).json(err)
+    })
+  await Tree.find({ _id: { $in: found } })
     .then((result) => {
       return res.status(200).json(result)
     })

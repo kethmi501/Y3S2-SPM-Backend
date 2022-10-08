@@ -6,6 +6,7 @@ import {
   deletePost,
   retrieveOneUpdate,
   updatePost,
+  searchTrees,
 } from '../controllers/tree'
 import { checkUser } from '../middlewares/auth'
 
@@ -17,5 +18,6 @@ router.get('/getuserposts', checkUser, retriveUserPosts)
 router.delete('/deleteTree', checkUser, deletePost)
 router.delete('/getOneUpdate', checkUser, retrieveOneUpdate)
 router.put('/updatepost', checkUser, updatePost)
+router.post('/searchtrees', searchTrees)
 
 module.exports = router
