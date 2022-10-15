@@ -49,8 +49,9 @@ export const deletePost = async (req, res) => {
 }
 
 export const retrieveOneUpdate = async (req, res) => {
-  const { userId, postId } = req.body
-  await Tree.findOne({ createdUser: userId, _id: postId })
+  const { postId } = req.query
+
+  await Tree.findOne({ _id: postId })
     .then((result) => {
       res.status(200).json(result)
     })

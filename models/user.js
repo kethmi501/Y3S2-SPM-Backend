@@ -30,6 +30,15 @@ const userSchema = new Schema(
       type: String,
       required: false,
     },
+    district: {
+      type: String,
+      required: false,
+    },
+    trophies: {
+      type: Number,
+      required: false,
+      default: 0,
+    }
   },
   {
     timestamps: true,

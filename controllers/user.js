@@ -2,7 +2,7 @@ import User from '../models/user'
 import jwt from 'jsonwebtoken'
 
 export const authUser = async (req, res) => {
-    const { displayName, email, photoURL } = req.body
+  const { displayName, email, photoURL, district } = req.body
 
   const user = await User.findOne({ email })
 
@@ -18,6 +18,7 @@ export const authUser = async (req, res) => {
       url: photoURL || 'https://firebasestorage.googleapis.com/v0/b/susty-next.appspot.com/o/default_profile_pic.png?alt=media&token=ddfbe30b-a94f-4390-94cf-416285ac2fde',
       name: 'default_profile_pic.png',
     },
+    district : district,
   })
 
 
@@ -39,7 +40,7 @@ const sendUserLoginSuccessResponse = (res, user, fn) => {
   }, null)
 
   const decoded = jwt.verify(token, process.env.JWT_SECRET, null, null)
-  
+
 
   if (user._id.toString() === decoded._id) {
     return res.status(200).json({

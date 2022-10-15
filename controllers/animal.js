@@ -1,5 +1,6 @@
 import User from '../models/user'
 import Animal from '../models/animal'
+import { addTrophies } from '../helpers/trophies'
 
 export const addAnimal = async (req, res) => {
   const {
@@ -59,7 +60,10 @@ export const addAnimal = async (req, res) => {
     imageArray,
     publisherId: _id,
     enhancementCardIds: [],
-  }).then((createdAnimal) => {
+  }).then(async (createdAnimal) => {
+    await addTrophies(_id, 1)
+
+
     return res.status(200).json({
       message: 'Animal created successfully',
       animal: createdAnimal,
