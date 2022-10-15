@@ -64,7 +64,7 @@ export const likePost = async (req, res) => {
         {
           new: true,
           upsert: true, // Make this update into an upsert
-        }
+        },
       )
         .then((result) => {
           res.status(200).json(result)
@@ -88,7 +88,7 @@ export const deletePost = async (req, res) => {
 
 export const retrieveOneUpdate = async (req, res) => {
   const { userId, postId } = req.body
-  await Location.findOne({ publisherId: userId, _id: postId })
+  await Location.findOne({ _id: postId })
     .then((result) => {
       res.status(200).json(result)
     })
