@@ -53,3 +53,16 @@ const entities6 = async (req, res) => {
 
 
 }
+
+const entities6 = async (req, res) => {
+  const { query } = req.query
+
+  const animalResults = await Animal.find({ nameInput: { $regex: query, $options: 'i' } })
+  const treeResults = await Tree.find({ name: { $regex: query, $options: 'i' } })
+  const LocationResults = await Location.find({ address: { $regex: query, $options: 'i' } })
+
+
+  res.status(200).json({ animalResults, treeResults, LocationResults })
+
+
+}
