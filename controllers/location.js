@@ -128,3 +128,23 @@ export const searchLocation = async (req, res) => {
       return res.status(500).json(err)
     })
 }
+
+export const updateLocation = async (req, res) => {
+  const { userId, postId, image } = req.body
+
+  const filter = { publisherId: userId, _id: postId }
+  const update = {
+    images: image,
+  }
+
+  await Location.findOneAndUpdate(filter, update, {
+    new: true,
+    upsert: true,
+  })
+    .then((result) => {
+      res.status(200).json(result)
+    })
+    .catch((err) => {
+      res.status(500).json(err)
+    })
+}
