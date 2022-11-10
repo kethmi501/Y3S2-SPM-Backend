@@ -11,6 +11,10 @@ const animalSchema = new Schema({
         type: String, required: true,
     }, enhancementCardIds: {
         type: [String], required: true,
+    } , publisherId: {
+        type: String, required: true,
+    } , imageUrl: {
+        type: String, required: true,
     }
 }, {
     timestamps: true,
