@@ -10,15 +10,15 @@ const locationSchema = new Schema(
     },
     location: {
       type: JSON,
-      required: true,
+      default: [''],
     },
     images: {
       type: JSON,
       required: true,
     },
-    address : {
-      type : String,
-      required : true,
+    address: {
+      type: String,
+      required: true,
     },
     publisherId: {
       type: String,
