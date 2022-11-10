@@ -28,8 +28,8 @@ export const addAnimal = async (req, res) => {
         nameInput,
         scientificNameInput,
         descriptionInput,
-        publisherId: _id,
         imageUrl: imageUrl,
+        publisherId: _id,
         enhancementCardIds: [],
     }).then(async (createdAnimal) => {
         await addTrophies(_id, 1)
@@ -91,27 +91,15 @@ export const editSingleAnimal = async (req, res) => {
         id,
         nameInput,
         scientificNameInput,
-        tagInput,
         descriptionInput,
-        avgMaleWeightInput,
-        avgFemaleWeightInput,
-        avgMaleHeightInput,
-        avgFemaleHeightInput,
-        kingdomOfAnimal,
-        phylumOfAnimal,
-        classOfAnimal,
-        orderOfAnimal,
-        familyOfAnimal,
-        genusOfAnimal,
-        speciesOfAnimal,
-        imageArray,
+        imageUrl,
         userId,
     } = req.body
 
 
-    if (!nameInput || !scientificNameInput || !tagInput || !descriptionInput || !avgMaleWeightInput || !avgFemaleWeightInput || !avgMaleHeightInput || !avgFemaleHeightInput || !kingdomOfAnimal || !phylumOfAnimal || !classOfAnimal || !orderOfAnimal || !familyOfAnimal || !genusOfAnimal || !speciesOfAnimal) {
+    if (!nameInput || !scientificNameInput || !descriptionInput || !imageUrl) {
         return res.status(400).json({
-            message: 'Please fill all fields',
+            message: 'Please check request body',
         })
     }
 
@@ -131,20 +119,8 @@ export const editSingleAnimal = async (req, res) => {
         {
             nameInput,
             scientificNameInput,
-            tagInput: tagInput,
             descriptionInput,
-            avgMaleWeightInput,
-            avgFemaleWeightInput,
-            avgMaleHeightInput,
-            avgFemaleHeightInput,
-            kingdomOfAnimal,
-            phylumOfAnimal,
-            classOfAnimal,
-            orderOfAnimal,
-            familyOfAnimal,
-            genusOfAnimal,
-            speciesOfAnimal,
-            imageArray,
+            imageUrl,
         }).then((createdAnimal) => {
         return res.status(200).json({
             message: 'Animal updated successfully',
