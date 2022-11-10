@@ -130,11 +130,13 @@ export const searchLocation = async (req, res) => {
 }
 
 export const updateLocation = async (req, res) => {
-  const { userId, postId, image } = req.body
+  const { userId, postId, image, address, district } = req.body
 
   const filter = { publisherId: userId, _id: postId }
   const update = {
     images: image,
+    address: address,
+    district: district,
   }
 
   await Location.findOneAndUpdate(filter, update, {
