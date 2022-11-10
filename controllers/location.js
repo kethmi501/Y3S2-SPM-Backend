@@ -9,6 +9,7 @@ export const createLocation = async (req, res) => {
     address: address,
     location: location,
     likes: [],
+    imageUrl: image[0],
   })
     .then((treeObject) => {
       res.status(200).json(treeObject)
