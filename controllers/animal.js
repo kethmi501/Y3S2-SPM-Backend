@@ -28,7 +28,7 @@ export const addAnimal = async (req, res) => {
         nameInput,
         scientificNameInput,
         descriptionInput,
-        imageUrl: imageUrl,
+        imageUrl,
         publisherId: _id,
         enhancementCardIds: [],
     }).then(async (createdAnimal) => {
