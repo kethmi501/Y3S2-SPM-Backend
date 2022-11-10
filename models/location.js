@@ -27,6 +27,9 @@ const locationSchema = new Schema(
     likes: {
       type: JSON,
     },
+    imageUrl: {
+      type: String,
+    },
   },
   {
     timestamps: true,

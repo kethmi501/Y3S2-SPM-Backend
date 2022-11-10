@@ -28,11 +28,14 @@ const treeSchema = new Schema(
       type: String,
       required: true,
     },
-    enhancementCardIds : {
+    enhancementCardIds: {
       type: [String],
       required: true,
       default: [],
-    }
+    },
+    imageUrl: {
+      type: String,
+    },
   },
   {
     timestamps: true,
