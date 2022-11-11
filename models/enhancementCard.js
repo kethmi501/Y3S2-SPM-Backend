@@ -16,10 +16,6 @@ const enhancementCardSchema = new Schema(
       type: String,
       required: true,
     },
-    imageArray: {
-      type: JSON,
-      required: true,
-    },
     entityType: {
       type: String,
       required: true,
