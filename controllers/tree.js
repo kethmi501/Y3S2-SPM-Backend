@@ -9,7 +9,7 @@ export const CreateTree = async (req, res) => {
     tags: tags,
     scientificname: scientificname,
     description: description,
-    imageUrl: image[0],
+    imageUrl: image,
   })
     .then((treeObject) => {
       res.status(200).json(treeObject)
