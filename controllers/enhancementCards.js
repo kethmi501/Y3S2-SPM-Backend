@@ -4,7 +4,7 @@ import Tree from '../models/tree'
 import Animal from '../models/animal'
 
 export const addEnhancementCards = async (req, res) => {
-  const { topic, description, userId, imageArray, entityType, entityID } = req.body
+  const { topic, description, userId, entityType, entityID } = req.body
 
   if (topic.toString().trim() === '' || description.toString().trim() === '' || entityType.toString().trim() === '' || entityID.toString().trim() === '') {
     return res.status(400).json({
@@ -43,7 +43,7 @@ export const addEnhancementCards = async (req, res) => {
   }
 
   await EnhancementCard.create({
-    topic, description, userId: _id, imageArray, entityType, entityID, reports: [],
+    topic, description, userId: _id, entityType, entityID, reports: [],
   }).then((enhancementCard) => {
 
     if (entityType === 'tree') {
@@ -219,9 +219,9 @@ export const reportEnhancementCards = async (req, res) => {
 }
 
 export const editEnhancementCards = async (req, res) => {
-  const { enhancementCardId, topic, description, imageArray } = req.body
+  const { enhancementCardId, topic, description,  } = req.body
 
-  if (!enhancementCardId || !topic || !description || !imageArray) {
+  if (!enhancementCardId || !topic || !description ) {
     return res.status(400).json({
       message: 'Please enter all fields',
     })
@@ -234,7 +234,7 @@ export const editEnhancementCards = async (req, res) => {
       await EnhancementCard.findByIdAndUpdate(
         enhancementCard._id,
         {
-          topic, description, imageArray,
+          topic, description,
         },
         { new: true })
         .then((enhancementCard) => {
